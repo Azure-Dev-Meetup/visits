@@ -121,7 +121,6 @@
                             <input type="text" name="email" class="form-control" placeholder="Enter email" required
                                 [(ngModel)]="editingVisit.email">
                         </div>
-
                     </div>
 
                     <hr />
@@ -137,21 +136,24 @@
                         </span>
                     </div>
 
+                    <button [disabled]="!form.valid" class="float-right button-primary" (click)="saveVisit()">
+                        Save
+                    </button>
+                    <button class="float-right button-primary" (click)="clear()">
+                        Cancel
+                    </button>
 
-                    <footer class="card-footer">
+<!--                     <footer class="card-footer">
                         <app-button-footer class="card-footer-item" [className]="'cancel-button'"
                             [iconClasses]="'fas fa-undo'" (clicked)="clear()" label="Cancel" [item]="editingVisit">
                         </app-button-footer>
                         <app-button-footer class="card-footer-item" [className]="'save-button'"
                             [iconClasses]="'fas fa-save'" (clicked)="saveVisit()" label="Save" [item]="editingVisit"
                             [disabled]="!form.valid"></app-button-footer>
-                    </footer>
-
+                    </footer> -->
 
                 </form>
-
             </div>
         </div>
-
     </div>
 </div>
