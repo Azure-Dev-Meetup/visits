@@ -2,15 +2,14 @@
     <div class="card edit-detail">
         <header class="card-header">
             <p class="card-header-title">
-                {{ editingVisit.name }}
-                &nbsp;
+                Gäste aus einem Haushalt
             </p>
         </header>
         <!-- Editing Visit data -->
         <div class="card-content">
             <div class="content">
 
-                <form>
+                <form #form="ngForm">
                     <!-- Name -->
                     <div class="row pl-3">
                         <div class="col col-12 col-lg-5">
@@ -137,15 +136,22 @@
                             aufbewahrt und nur auf Anfrage an das zuständige Gesundheitsamt weitergegeben.
                         </span>
                     </div>
+
+
+                    <footer class="card-footer">
+                        <app-button-footer class="card-footer-item" [className]="'cancel-button'"
+                            [iconClasses]="'fas fa-undo'" (clicked)="clear()" label="Cancel" [item]="editingVisit">
+                        </app-button-footer>
+                        <app-button-footer class="card-footer-item" [className]="'save-button'"
+                            [iconClasses]="'fas fa-save'" (clicked)="saveVisit()" label="Save" [item]="editingVisit"
+                            [disabled]="!form.valid"></app-button-footer>
+                    </footer>
+
+
                 </form>
 
             </div>
         </div>
-        <footer class="card-footer">
-            <app-button-footer class="card-footer-item" [className]="'cancel-button'" [iconClasses]="'fas fa-undo'"
-                (clicked)="clear()" label="Cancel" [item]="editingVisit"></app-button-footer>
-            <app-button-footer class="card-footer-item" [className]="'save-button'" [iconClasses]="'fas fa-save'"
-                (clicked)="saveVisit()" label="Save" [item]="editingVisit"></app-button-footer>
-        </footer>
+
     </div>
 </div>

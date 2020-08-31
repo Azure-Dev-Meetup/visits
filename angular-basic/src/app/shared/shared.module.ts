@@ -19,7 +19,8 @@ const components = [
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   declarations: [components],
   exports: [components]

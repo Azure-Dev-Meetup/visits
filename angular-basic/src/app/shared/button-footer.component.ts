@@ -10,6 +10,7 @@ export class ButtonFooterComponent implements OnInit {
   @Input() iconClasses;
   @Input() item;
   @Input() dataId;
+  @Input() disabled;
 
   @Output() clicked = new EventEmitter<any>();
 
