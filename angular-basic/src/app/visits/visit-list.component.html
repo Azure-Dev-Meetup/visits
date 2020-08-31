@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <div *ngIf="!visits?.length">
+        Loading data ...
+    </div>
+    <ul class="list">
+        <li role="presentation" *ngFor="let visit of visits; trackBy: trackByVisit; let i = index">
+            <div class="card">
+                <app-card-content [id]=visit.id [date]=visit.date [arrivalTime]="visit.arrivalTime"
+                    [leavingTime]="visit.leavingTime" [tablenumber]="visit.tableNumber" [name]="visit.name"
+                    [phone]="visit.phone" [street]="visit.street" [plz]="visit.plz" [city]="visit.city"
+                    [email]="visit.email"></app-card-content>
+                <footer class="card-footer">
+                    <app-button-footer class="card-footer-item" [className]="'delete-item'"
+                        [iconClasses]="'fas fa-trash'" (clicked)="deleteVisit($event)" label="Delete" [item]="visit">
+                    </app-button-footer>
+                    <app-button-footer class="card-footer-item" [className]="'edit-item'" [iconClasses]="'fas fa-edit'"
+                        (clicked)="selectVisit($event)" label="Edit" [item]="visit"></app-button-footer>
+                </footer>
+            </div>
+        </li>
+    </ul>
+</div>

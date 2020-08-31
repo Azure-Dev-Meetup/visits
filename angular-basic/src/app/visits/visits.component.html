@@ -1,0 +1,14 @@
+
+<div class="content-container container-fluid">
+    <app-list-header title="Visits" (add)="enableAddMode()" (refresh)="getVisits()"></app-list-header>
+    <div class="columns is-multiline is-variable">
+        <div class="column is-8" *ngIf="visits$ | async as visits">
+            <app-visit-list *ngIf="!selected" [visits]="visits" (selected)="select($event)"
+                (deleted)="askToDelete($event)"></app-visit-list>
+            <app-visit-detail *ngIf="selected" [visit]="selected" (unselect)="clear()" (save)="save($event)">
+            </app-visit-detail>
+        </div>
+    </div>
+</div>
+
+
