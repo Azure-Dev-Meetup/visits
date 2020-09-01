@@ -8,6 +8,7 @@ export class CardContentComponent implements OnInit {
 
   @Input() id;
   @Input() date;
+  @Input() numberOfVisitors;
   @Input() arrivalTime;
   @Input() leavingTime;
   @Input() tablenumber;

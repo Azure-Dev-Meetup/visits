@@ -9,11 +9,11 @@
         <div class="card-content">
             <div class="content">
 
-                <form #form="ngForm">
+                <form autocomplete="off" novalidate #form="ngForm">
                     <!-- Name -->
                     <div class="row pl-3">
-                        <div class="col col-12 col-lg-5">
-                            <label class="label" for="name">Vorname und Name: </label>
+                        <div class="mt-3 col col-12 col-lg-5">
+                            <label class="label" for="name">Vorname und Name*: </label>
                             <input type="text" name="name" class="form-control" placeholder="Enter name" required
                                 [(ngModel)]="editingVisit.name">
                         </div>
@@ -24,7 +24,7 @@
 
                         <div class="col col-12 col-lg-5 pr-5">
                             <div class="mt-3">
-                                <label for="phone">Telefonnummer: </label>
+                                <label for="phone">Telefonnummer*: </label>
                                 <input type="number" name="phone" class="form-control" placeholder="Enter phonenumber"
                                     required [(ngModel)]="editingVisit.phone">
                             </div>
@@ -36,8 +36,8 @@
                     <div class="row pl-3">
                         <div class="col col-12 col-lg-5">
                             <!-- date of visit -->
-                            <div class="mt-3">
-                                <label for="date">Datum:</label>
+                            <div>
+                                <label for="date">Datum*:</label>
                                 <div class="input-group">
                                     <input class="form-control" placeholder="dd-mm-yyyy" name="date" [(ngModel)]="model"
                                         ngbDatepicker #d="ngbDatepicker" [(ngModel)]="editingVisit.date">
@@ -55,7 +55,7 @@
 
                         <div class="col col-12 col-lg-5  pr-5">
                             <!-- time of visit -->
-                            <label for="arrivalTime">Uhrzeit Ankunft:</label>
+                            <label for="arrivalTime">Uhrzeit Ankunft*:</label>
                             <input type="time" name="arrivalTime" class="form-control" placeholder="Uhrzeit Ankunft"
                                 required [(ngModel)]="editingVisit.arrivalTime">
                         </div>
@@ -67,7 +67,7 @@
                             <div class="mt-3">
                                 <label class="label" for="tableNumber">Tischnummer:</label>
                                 <input type="number" name="tableNumber" class="form-control" placeholder="Tischnummer"
-                                    required [(ngModel)]="editingVisit.tableNumber">
+                                    [(ngModel)]="editingVisit.tableNumber">
                             </div>
                         </div>
 
@@ -77,7 +77,7 @@
 
                         <div class="col col-12 col-lg-5  pr-5">
                             <!-- time of visit -->
-                            <label for="leavingTime">Uhrzeit Ende: </label>
+                            <label for="leavingTime">Uhrzeit Abreiße*: </label>
                             <input type="time" name="leavingTime" class="form-control" placeholder="Uhrzeit Ende"
                                 required [(ngModel)]="editingVisit.leavingTime">
                         </div>
@@ -92,6 +92,17 @@
                             <input type="email" name="email" class="form-control" placeholder="Enter email" required
                                 [(ngModel)]="editingVisit.email">
                         </div>
+
+                        <!-- spacing between columns -->
+                        <div class="col col-12 col-lg-2">
+                        </div>
+
+                        <div class="col col-12 col-lg-5  pr-5">
+                            <!-- number of visitors -->
+                            <label for="numberOfVisitors">Anzahl der Besucher: </label>
+                            <input type="number" name="numberOfVisitors" class="form-control" placeholder="Enter number of visitors"
+                                required [(ngModel)]="editingVisit.numberOfVisitors">
+                        </div>
                     </div>
 
                     <hr />
@@ -101,7 +112,7 @@
                             <!-- street -->
                             <div class="my-3">
                                 <label for="street">Straße:</label>
-                                <input type="text" name="street" class="form-control" placeholder="Straße" required
+                                <input type="text" name="street" class="form-control" placeholder="Straße"
                                     [(ngModel)]="editingVisit.street">
                             </div>
                         </div>
@@ -110,7 +121,7 @@
                             <!-- plz -->
                             <div class="my-3">
                                 <label for="plz">PLZ: </label>
-                                <input type="number" name="plz" class="form-control" placeholder="PLZ" required
+                                <input type="number" name="plz" class="form-control" placeholder="PLZ"
                                     [(ngModel)]="editingVisit.plz">
                             </div>
                         </div>
@@ -119,7 +130,7 @@
                             <!-- city -->
                             <div class="my-3">
                                 <label for="city">Wohnort:</label>
-                                <input type="text" name="city" class="form-control" placeholder="Wohnort" required
+                                <input type="text" name="city" class="form-control" placeholder="Wohnort"
                                     [(ngModel)]="editingVisit.city">
                             </div>
                         </div>
@@ -138,7 +149,8 @@
                         </span>
                     </div>
 
-                    <button type="submit" class="float-right button-primary" (click)="saveVisit()">
+                    <button [disabled]="!form.valid" type="submit" class="float-right button-primary"
+                        (click)="saveVisit()">
                         Save
                     </button>
                     <button class="float-right button-primary" (click)="clear()">

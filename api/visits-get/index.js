@@ -1,4 +1,4 @@
-const data = require('../shared/visit-data');
+const data = require('../shared/visit-data').default;
 
 module.exports = async function (context, req) {
     try {

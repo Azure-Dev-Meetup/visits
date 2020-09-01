@@ -7,6 +7,7 @@ import {
   SimpleChanges,
   ChangeDetectionStrategy,
   ViewChild,
+  OnInit,
 } from '@angular/core';
 
 import { Visit } from '../core';
@@ -17,7 +18,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './visit-detail.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VisitDetailComponent implements OnChanges {
+export class VisitDetailComponent implements OnChanges, OnInit {
   @Input() visit: Visit;
   @Output() unselect = new EventEmitter<string>();
   @Output() save = new EventEmitter<Visit>();
@@ -25,8 +26,14 @@ export class VisitDetailComponent implements OnChanges {
   addMode = false;
   editingVisit: Visit;
 
+  dateTime = new Date();
+
   model: NgbDateStruct;
   @ViewChild('date') date: any;
+
+  ngOnInit(): void {
+    this.editingVisit.arrivalTime = `${this.dateTime.getHours()}:${this.dateTime.getMinutes()}`;
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.visit && this.visit.id) {
@@ -36,6 +43,7 @@ export class VisitDetailComponent implements OnChanges {
 
       this.editingVisit = {
         id: undefined,
+        numberOfVisitors: undefined,
         name: '',
         phone: '',
         street: '',
@@ -54,6 +62,7 @@ export class VisitDetailComponent implements OnChanges {
   clear() {
     this.editingVisit = {
       id: undefined,
+      numberOfVisitors: undefined,
       name: '',
       phone: '',
       street: '',
