@@ -1,5 +1,3 @@
-const addVisitToStorage = require('../shared/stoargeHelper').default;
-
 const visitData = {
     visits: [
         {
