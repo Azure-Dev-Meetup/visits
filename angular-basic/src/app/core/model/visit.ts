@@ -1,5 +1,5 @@
 export class Visit {
-  id: number;
+  id: any;
   date: any;
   arrivalTime: string;
   leavingTime: string;

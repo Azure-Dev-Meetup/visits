@@ -19,7 +19,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 })
 export class VisitDetailComponent implements OnChanges {
   @Input() visit: Visit;
-  /* @Output() unselect = new EventEmitter<string>(); */
+  @Output() unselect = new EventEmitter<string>();
   @Output() save = new EventEmitter<Visit>();
 
   addMode = false;
@@ -52,18 +52,19 @@ export class VisitDetailComponent implements OnChanges {
   }
 
   clear() {
-    this.editingVisit.name = '';
-    this.editingVisit.phone = '';
-    this.editingVisit.street = '';
-    this.editingVisit.plz = '';
-    this.editingVisit.city = '';
-    this.editingVisit.email = '';
-    this.editingVisit.date = '';
-    this.editingVisit.arrivalTime = '';
-    this.editingVisit.leavingTime = '';
-    this.editingVisit.tableNumber = '';
-
-    /* this.unselect.emit(); */
+    this.editingVisit = {
+      id: undefined,
+      name: '',
+      phone: '',
+      street: '',
+      plz: '',
+      city: '',
+      email: '',
+      date: '',
+      arrivalTime: '',
+      leavingTime: '',
+      tableNumber: '',
+    };
   }
 
   saveVisit() {

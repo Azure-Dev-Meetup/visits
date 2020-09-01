@@ -204,13 +204,22 @@ button.link {
   width: 120px;
 }
 
-.button-primary:hover {
+.btn {
+  background-color: #00A5E1;
+  border-color: #61dafb;
+}
+
+.button-primary:hover,
+.btn:hover {
   background-color: #61dafb;
   border-color: #00A5E1;
 }
 
-button:focus {
+button:focus,
+.btn:focus {
   outline: none !important;
+  border-color: #ced4da;
+  box-shadow: none;
 }
 
 button[aria-label="Close"]:focus {

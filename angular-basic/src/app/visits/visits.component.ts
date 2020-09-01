@@ -36,12 +36,11 @@ export class VisitsComponent implements OnInit {
 
 
   add(visit: Visit) {
-    console.log('visit', visit);
+    console.log('visit added', visit);
     this.visitService.add(visit);
   }
 
   askToDelete(visit: Visit) {
-    console.log('ask');
     const deleteDialogRef = this.modalservice.open(ModalComponent, { size: 'lg', centered: true });
     this.visitToDelete = visit;
     this.showModal = true;
@@ -49,7 +48,6 @@ export class VisitsComponent implements OnInit {
       this.message = `Would you like to delete ${this.visitToDelete.name}?`;
     }
     deleteDialogRef.result.then((res) => {
-      console.log('close res', res);
       if (res === 'yes') {
         this.deleteVisit();
       }
@@ -65,7 +63,6 @@ export class VisitsComponent implements OnInit {
   }
 
   deleteVisit() {
-    console.log('delete visit');
     if (this.visitToDelete) {
       this.visitService
         .delete(this.visitToDelete.id)
@@ -80,7 +77,6 @@ export class VisitsComponent implements OnInit {
 
   getVisits() {
     this.visitService.getAll().subscribe(element => {
-      console.log('element', element);
       return element;
     });
     this.clear();
