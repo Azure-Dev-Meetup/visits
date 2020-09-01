@@ -1,5 +1,5 @@
-const data = require('../shared/visit-data');
-const addDataToStorage = require('../shared/stoargeHelper');
+const addVisitToStorage = require('../shared/stoargeHelper');
+
 
 module.exports = async function (context, req) {
     const visit = {
@@ -18,10 +18,10 @@ module.exports = async function (context, req) {
     };
 
     try {
-        const addToStorage = await addDataToStorage.addVisitToStorage(visit);
-        const newVisit = data.addVisit(visit);
+        
+        const res = await addVisitToStorage(visit);
 
-        context.res.status(201).json(newVisit);
+        context.res.status(201).json(res);
     } catch (error) {
         context.res.status(500).send(error);
     }
