@@ -1,52 +1,47 @@
-const { BlobServiceClient } = require('@azure/storage-blob');
-const AZURE_STORAGE_CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=visitsstrore;AccountKey=1PTRqfgL7OMkwAi8ZMMwBpH6Bvdc+kFUR63kl7S2iAq5yaSp0tE9q8dUEh7qZKHQWTgcjR4i5JY3kypaQmq/ow==;EndpointSuffix=core.windows.net";
+const { BlobServiceClient, ContainerClient } = require('@azure/storage-blob');
+const uuid = require('uuid');
+const blobSasUrl = "https://visitsstrore.blob.core.windows.net/visitsdata?sp=racwdl&st=2020-09-01T22:23:40Z&se=2020-09-05T22:23:00Z&sv=2019-12-12&sr=c&sig=FFjJV%2BYRuxFolq%2B7H2VJNmF3I9%2FQiKRjEig3zgan9NM%3D";
 
-async function addVisitToStorage(visit) {
-
-    try {
-        visit.id = getUuid();
-        const bRes = "";
-        console.log('Azure Blob storage v12 - JavaScript quickstart sample');
-        //Create Container
-        const blobServiceClient = BlobServiceClient.fromConnectionString("DefaultEndpointsProtocol=https;AccountName=visitsstrore;AccountKey=1PTRqfgL7OMkwAi8ZMMwBpH6Bvdc+kFUR63kl7S2iAq5yaSp0tE9q8dUEh7qZKHQWTgcjR4i5JY3kypaQmq/ow==;EndpointSuffix=core.windows.net");
-        bRes = "After BClient";
-
-        // Create a unique name for the container
-        const containerName = "visitsdata";
-
-        // Get a reference to a container
-        const containerClient = blobServiceClient.getContainerClient(containerName);
-        bRes = "After ContainerName";
-        const containerExist = await containerClient.exists();
-        bRes = "After Exist";
-        if (containerExist) {
-            // Create the container
-            //const createContainerResponse = await containerClient.create();
-
-            //Upload Data
-            // Create a unique name for the blob
-            const blobName = visit.id + '.txt';
-            // Get a block blob client
-            const blockBlobClient = containerClient.getBlockBlobClient(blobName);
-            bRes = "After BClient Blob";
-            // Upload data to the blob
-            const uploadBlobResponse = await blockBlobClient.upload(visit.toString(), visit.toString().length);
-
-            return bRes;
-        } else {
-            return "Bad Ass"
-        }
-
-
-
-    } catch (e) {
-
-        return e;
-    }
-
-
+const _visit = {
+    id: undefined,
+    numberOfVisitors: "",
+    name: "",
+    date: "",
+    arrivalTime: "",
+    leavingTime: "",
+    tableNumber: "",
+    phone: "",
+    street: "",
+    plz: "",
+    city: "",
+    email: "",
 };
 
-module.exports = {
-    addVisitToStorage
-};
+module.exports = async function (visit) {
+
+    const containerClient = new ContainerClient(blobSasUrl);
+
+
+    //Set the visit ID to UUID
+    visit.id = uuid.v4();
+    // Create a unique name for the blob
+    const blobName = visit.id + '.txt';
+    console.log('Visit ID: ',visit.id);
+    const visitData = JSON.stringify(visit);
+    // Get a block blob client
+    const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+
+    console.log('\nUploading to Azure storage as blob:\n\t', blobName);
+
+    // Upload data to the blob
+    //const data = 'Hello, World!';
+    const uploadBlobResponse = await blockBlobClient.upload(visitData, visitData.toString().length);
+    console.log("Blob was uploaded successfully. requestId: ", uploadBlobResponse.requestId);
+    console.log('\nListing blobs...');
+
+    // List the blob(s) in the container.
+    //for await (const blob of containerClient.listBlobsFlat()) {
+    //    console.log('\t', blob.name);
+    //}
+    return visit;
+}
