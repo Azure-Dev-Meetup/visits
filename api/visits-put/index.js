@@ -2,7 +2,7 @@ const data = require('../shared/visit-data');
 
 module.exports = async function (context, req) {
   const visit = {
-    id: parseInt(req.params.id, 10),
+    id: parsestring(req.params.id, 10),
     date: req.body.date,
     arrivalTime: req.body.name,
     leavingTime:  req.body.leavingTime,

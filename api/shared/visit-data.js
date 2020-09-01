@@ -58,10 +58,11 @@ const visitData = {
 
 // *NEW
 
-const getRandomInt = () => {
-  const max = 1000;
-  const min = 100;
-  return Math.floor(Math.random() * Math.floor(max) + min);
+const getUuid = () => {
+
+    var uuid = require('uuid');
+    
+    return uuid.v4();
 };
 
 const getVisits = () => {
@@ -75,7 +76,7 @@ const deleteVisit = (id) => {
 };
 
 const addVisit = (visit) => {
-  visit.id = getRandomInt();
+  visit.id = getUuid();
   visitData.visits.push(visit);
   return visit;
 };

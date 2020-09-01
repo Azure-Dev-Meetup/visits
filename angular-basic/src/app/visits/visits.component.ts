@@ -26,6 +26,7 @@ export class VisitsComponent implements OnInit {
 
   ngOnInit() {
     this.getVisits();
+    console.log(this.getVisits());
   }
 
   cancel() {
