@@ -33,11 +33,9 @@ module.exports.GetVisitsFromBlob = async function () {
 module.exports.GetListOfVisitsFromBlob = async function () {
     for await (const blob of containerClient.listBlobsFlat()) {
         console.log('\t', blob.name);
-        const blockBlobClient = containerClient.getBlobClient(blob.name);
-        const blobServiceClient = new BlobServiceClient(blobSasUrl);
-        blobServiceClient.get
+        const blockBlobClient = containerClient.getBlobClient(blob.name);    
         const downloadBlockBlobResponse = await blockBlobClient.download(0);
-        const visit = await streamToString(downloadBlockBlobResponse.readableStreamBody);
+        const visit = JSON.parse(await streamToString(downloadBlockBlobResponse.readableStreamBody));
         listOfVisits.visitList.push(visit);
     }
     return listOfVisits.visitList;
