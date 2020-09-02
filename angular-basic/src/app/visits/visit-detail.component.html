@@ -154,7 +154,7 @@
                         </span>
                     </div>
 
-                    <button [disabled]="form.invalid" type="submit" class="float-right button-primary"
+                    <button  type="button" [disabled]="form.form.invalid || editingVisit.name === ''" class="float-right button-primary"
                         (click)="saveVisit()">
                         Save
                     </button>
