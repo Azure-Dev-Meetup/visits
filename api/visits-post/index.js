@@ -19,7 +19,7 @@ module.exports = async function (context, req) {
 
     try {
         
-        const res = await addVisitToStorage(visit);
+        const res = await addVisitToStorage.AddVisitToBlob(visit);
 
         context.res.status(201).json(res);
     } catch (error) {
