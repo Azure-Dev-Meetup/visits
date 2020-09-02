@@ -1,11 +1,9 @@
-const data = require('../shared/visit-data').default;
+let getBlobData = require('../shared/storageHelper');
+
 
 module.exports = async function (context, req) {
-    try {
-        const visits = data.getVisits();
-        context.res.status(200).json(visits);
-        
-    } catch (error) {
-        context.res.status(500).send(error);
-    }
-};
+    context.log('JavaScript HTTP trigger function processed a request.');
+
+    const res = await getBlobData.GetListOfVisitsFromBlob();
+    context.res.status(200).json(JSON.stringify(res));
+}

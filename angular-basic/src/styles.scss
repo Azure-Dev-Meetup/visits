@@ -251,3 +251,11 @@ input[type="color"]:focus,
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
+
+.custom-header {
+  color: $doubleslash;
+}
+
+.custom-header:hover {
+  color: $react-light;
+}

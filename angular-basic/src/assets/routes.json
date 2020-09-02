@@ -1,9 +1,35 @@
 {
     "routes": [
+
       {
-        "route": "/*",
-        "serve": "/index.html",
-        "statusCode": 200
+        "route": "/visits",
+        "allowedRoles": ["authenticated"]
+      },
+
+      {
+        "route": "/about",
+        "allowedRoles": ["authenticated"]
+      },
+
+      {
+        "route": "/login",
+        "serve": "/.auth/login/github"
+      },
+
+      {
+        "route": "/logout",
+        "serve": "/.auth/logout"
+      },
+
+      {
+        "route": "/health-department",
+        "allowedRoles": ["administrator"]
       }
-    ]
+    ],
+    "defaultHeaders": {
+      "content-security-policy": "default-src https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'"
+    },
+    "mimeTypes": {
+        "custom": "text/html"
+    }
   }

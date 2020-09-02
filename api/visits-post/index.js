@@ -1,4 +1,4 @@
-const addVisitToStorage = require('../shared/stoargeHelper');
+const addVisitToStorage = require('../shared/storageHelper');
 
 
 module.exports = async function (context, req) {
