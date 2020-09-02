@@ -8,6 +8,8 @@ import { VisitsComponent } from './visits.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+
+
 const routes: Routes = [
   {
     path: '',
@@ -31,7 +33,7 @@ const routes: Routes = [
     VisitsComponent,
     VisitListComponent,
     VisitDetailComponent,
-  ],
+  ]
 })
 
 export class VisitsModule {}

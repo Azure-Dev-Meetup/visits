@@ -248,14 +248,28 @@ input[type="color"]:focus,
   outline: 0 none;
 }
 
-input.ng-invalid.ng-touched {
+/* input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
-
+ */
 .custom-header {
   color: $doubleslash;
 }
 
 .custom-header:hover {
   color: $react-light;
+}
+
+:disabled {
+  cursor: default;
+  background: #eaebed;
+  color: #ffffff;
+  border: #eaebed;
+}
+
+:disabled:hover {
+  cursor: default;
+  background: #eaebed;
+  color: #ffffff;
+  border: #eaebed;
 }
